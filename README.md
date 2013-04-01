@@ -7,15 +7,12 @@
 
 #To convert .xml to .sqlite
 
-At first, you have to get licence of NLM. 
+At first, you have to get the licence of NLM. Fill the form of agreement in http://www.nlm.nih.gov/databases/license/license.html You can get "zip" file of Pubmed from NLM.
 
+Second, put this file in Put_Data_Here directory and decompress them.
 
-download XML files of Pubmed from http://www.ncbi.nlm.nih.gov/pmc/tools/ftp/ (articles.A-B.tar.gz, articles.C-H.tar.gz, articles.I-N.tar.gz and articles.O-Z.tar.gz)
+Finally, run this shell script (it costs several weeks). 
 
-Second, put these files in Put_Data_Here directory and decompress them.
-
-Finally, run this shell script (it costs several hours). 
-
-    ./pubmed_small.sh
+    ./pubmed_large.sh
 
 This script parses the xml and you can get pubmed.sqlite.
