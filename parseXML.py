@@ -37,6 +37,20 @@ for i in range(len(root)):
 		PMID = root[i].xpath("PMID")[0].text
 		PM_URL = "http://www.ncbi.nlm.nih.gov/pubmed/" + PMID
 
+		# remove duplicate
+		Journal = Journal.replace("\t","")
+		Journal = Journal.replace("\n","")
+		Year = Year.replace("\t","")
+		Year = Year.replace("\n","")
+		Title = Title.replace("\t","")
+		Title = Title.replace("\n","")
+		Abstruct = Abstruct.replace("\t","")
+		Abstruct = Abstruct.replace("\n","")
+		PMID = PMID.replace("\t","")
+		PMID = PMID.replace("\n","")
+		PM_URL = PM_URL.replace("\t","")
+		PM_URL = PM_URL.replace("\n","")
+
 		# output
 		out1.write(PMID.encode("utf_8"))
 		out1.write("\t")
@@ -53,6 +67,9 @@ for i in range(len(root)):
 
 	except IndexError:
 		pass
+	except AttributeError:
+		pass
+
 		
 	#  PMCID / PMCURL
 	try:
@@ -61,6 +78,14 @@ for i in range(len(root)):
 			PMID = root[i].xpath("PMID")[0].text
 			PMCID = match.group()
 			PMC_URL = "http://www.ncbi.nlm.nih.gov/pmc/articles/" + PMCID + "/pdf/"
+
+			# remove duplicate
+			PMID = PMID.replace("\t","")
+			PMID = PMID.replace("\n","")
+			PMCID = PMCID.replace("\t","")
+			PMCID = PMCID.replace("\n","")
+			PMC_URL = PMC_URL.replace("\t","")
+			PMC_URL = PMC_URL.replace("\n","")
 
 			# output
 			out2.write(PMID.encode("utf_8"))
@@ -72,6 +97,9 @@ for i in range(len(root)):
 
 	except IndexError:
 		pass
+	except AttributeError:
+		pass
+
 
 	#  MeSH Category / MeSH Term
 	try:
@@ -80,12 +108,20 @@ for i in range(len(root)):
 			PMID = root[i].xpath("PMID")[0].text
 			MeSH_Term = root[i].xpath("MeshHeadingList")[0].xpath("MeshHeading")[j].xpath("DescriptorName")[0].text
 
+			# remove duplicate
+			PMID = PMID.replace("\t","")
+			PMID = PMID.replace("\n","")
+			MeSH_Term = MeSH_Term.replace("\t","")
+			MeSH_Term = MeSH_Term.replace("\n","")
+
 			# output
 			out3.write(PMID.encode("utf_8"))
 			out3.write("\t")
 			out3.write(MeSH_Term.encode("utf_8"))
 			out3.write("\n")
 	except IndexError:
+		pass
+	except AttributeError:
 		pass
 
 # close
